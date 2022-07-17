@@ -8,5 +8,4 @@ class MainActivityViewModel : ViewModel() {
 
     val fragmentNick = FragmentNick()
     val fragmentPassword = FragmentPassword()
-
 }

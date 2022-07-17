@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import com.google.android.material.slider.Slider
 import iteoakademia.patryk.myapplication.R
 import iteoakademia.patryk.myapplication.viewmodel.FragmentPasswordViewModel
 
@@ -27,7 +30,15 @@ class FragmentPassword : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FragmentPasswordViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val btnGeneratePassword = getView()?.findViewById<Button>(R.id.btnGeneratePassword)
+        val tvShowPassword = getView()?.findViewById<TextView>(R.id.tvShowPassword)
+        val sliderPasswordLength = getView()?.findViewById<Slider>(R.id.sliderPasswordLength)
+
+        btnGeneratePassword?.setOnClickListener {
+            viewModel.generatePassword(sliderPasswordLength?.value?.toInt())
+            tvShowPassword?.text = viewModel.password
+        }
     }
 
 }

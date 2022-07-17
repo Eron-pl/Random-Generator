@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import iteoakademia.patryk.myapplication.R
 import iteoakademia.patryk.myapplication.viewmodel.FragmentNickViewModel
 
@@ -27,7 +29,14 @@ class FragmentNick : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(FragmentNickViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        val btnGenerateNick = getView()?.findViewById<Button>(R.id.btnGenerateNick)
+        val tvShowNick = getView()?.findViewById<TextView>(R.id.tvShowNick)
+
+        btnGenerateNick?.setOnClickListener{
+            viewModel.generateNick()
+            tvShowNick?.text = viewModel.nick
+        }
     }
 
 }

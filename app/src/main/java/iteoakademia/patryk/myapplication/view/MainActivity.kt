@@ -14,6 +14,11 @@ class MainActivity : AppCompatActivity() {
 
         val viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.mainFrameLayout, viewModel.fragmentNick)
+            commit()
+        }
+
         val btnNick = findViewById<ImageButton>(R.id.btnNick)
         val btnPassword = findViewById<ImageButton>(R.id.btnPassword)
 
