@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import com.google.android.material.slider.Slider
 import iteoakademia.patryk.myapplication.R
@@ -34,9 +35,11 @@ class FragmentPassword : Fragment() {
         val btnGeneratePassword = getView()?.findViewById<Button>(R.id.btnGeneratePassword)
         val tvShowPassword = getView()?.findViewById<TextView>(R.id.tvShowPassword)
         val sliderPasswordLength = getView()?.findViewById<Slider>(R.id.sliderPasswordLength)
+        val checkBoxSpecialCharacters = getView()?.findViewById<CheckBox>(R.id.checkboxSpecialCharacters)
+        val checkBoxNumbers = getView()?.findViewById<CheckBox>(R.id.checkboxNumbers)
 
         btnGeneratePassword?.setOnClickListener {
-            viewModel.generatePassword(sliderPasswordLength?.value?.toInt())
+            viewModel.generatePassword(sliderPasswordLength?.value?.toInt(), checkBoxSpecialCharacters, checkBoxNumbers)
             tvShowPassword?.text = viewModel.password
         }
     }
